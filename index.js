@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // 使用public文件夹
-app.use(express.static('/public'));
+app.use(express.static(__dirname + '/public'));
 
 if (!module.parent) {
     app.listen(3000);
