@@ -1,28 +1,17 @@
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 
-var app = module.exports = express();
-const bodyParser = require('body-parser');
+const app = module.exports = express();
+// 导入路由
+const routers = require('./routers/routers')(app);
 
 // 设置ejs模板引擎
 app.set('view engine', 'ejs');
 // __dirname当前路径
 app.set('views', path.join(__dirname, 'views'));
 
+// 使用public文件夹
 app.use(express.static('/public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.get('/', function(req, res){
-    // res.send("login success");
-    res.render('login', {title: 'node express'});
-});
-
-app.post('/login', function (req, res) {
-    console.log(req.body['username']);
-    console.log(req.body['password'])
-    res.send('login success');
-});
 
 if (!module.parent) {
     app.listen(3000);
