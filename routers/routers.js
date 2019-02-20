@@ -17,9 +17,22 @@ module.exports = function (app) {
         res.render('login', {title: 'node express'});
     });
 
+    app.get('/query', function(req, res){
+        console.log(req.query);
+        console.log(req.query.name);
+        console.log(req.query.age);
+        console.log(req.query);
+        res.send(req.query);
+    });
+
     app.post('/login', function (req, res) {
         console.log(req.body['username']);
-        console.log(req.body['password'])
-        res.send('login success');
+        console.log(req.body['password']);
+        let result = {
+          code : 200,
+          data : 'login success',
+          msg : 'login !'
+        };
+        res.send(result);
     });
 }
